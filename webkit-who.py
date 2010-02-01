@@ -41,6 +41,8 @@ for line in log.stdout.xreadlines():
         print 'CL', author
         continue
 
+# See:  http://trac.webkit.org/wiki/WebKit%20Team
+
 domain_companies = {
     'chromium.org': 'google',
     'google.com': 'google',
@@ -50,50 +52,83 @@ domain_companies = {
     'torchmobile.com.cn': 'torch mobile',
     'torchmobile.com': 'torch mobile',
     'rim.com': 'rim',
-    'gnome.org': 'gnome',
 }
 
-other_google = [
-    'kinuko@chromium.com',
-    'eric@webkit.org',
-    'jens@mooseyard.com',
-    'rniwa@webkit.org',
-    'antonm@chromium',
-    'shinichiro.hamaji@gmail.com',
-    'finnur.webkit@gmail.com',
-    'yaar@chromium.src',
-    'abarth@webkit.org',
-    'abarth',
-    'joel@jms.id.au',
-]
+other = {
+    'google': [
+        'abarth',
+        'abarth@webkit.org',
+        'antonm@chromium',
+        'christian.plesner.hansen@gmail.com',  # v8
+        'eric@webkit.org',
+        'finnur.webkit@gmail.com',
+        'jens@mooseyard.com',
+        'joel@jms.id.au',  # intern
+        'kinuko@chromium.com',
+        'rniwa@webkit.org',  # intern
+        'shinichiro.hamaji@gmail.com',
+        'yaar@chromium.src',
+    ],
 
-other_apple = [
-    'sam@webkit.org',
-]
+    'apple': [
+        'sam@webkit.org',
+    ],
 
-other_gnome = [
-    'kov@webkit.org',
-    'otte@webkit.org',
-    'gustavo.noronha@collabora.co.uk',
-    'christian@twotoasts.de',
-    'xan@webkit.org',
-    'jmalonzo@webkit.org',
-]
+    'redhat': [
+        'danw@gnome.org',
+        'otte@webkit.org',
+    ],
 
-other_qt = [
-    'ariya.hidayat@gmail.com',
-    'ariya@webkit.org',
-    'hausmann@webkit.org',
-    'vestbo@webkit.org',
-]
+    'nokia': [
+        'hausmann@webkit.org',
+        'kenneth@webkit.org',
+        'tonikitoo@webkit.org',
+        'vestbo@webkit.org',
+        'faw217@gmail.com',  # A guess, based on commits.
+
+        'girish@forwardbias.in',  # Appears to be consulting for Qt = Nokia(?).
+    ],
+
+    'rim': [
+        'dbates@webkit.org',
+        'zimmermann@webkit.org',
+    ],
+
+    'misc (e.g. open source)': [
+        'becsi.andras@stud.u-szeged.hu',
+        'bfulgham@webkit.org',  # WinCairo
+        'chris.jerdonek@gmail.com',  # Seems to be doing random script cleanups?
+        'jmalonzo@webkit.org',  # GTK
+        'joanmarie.diggs@gmail.com',  # GTK Accessibility (Sun?)
+        'joepeck@webkit.org',   # Inspector.
+        'krit@webkit.org',
+        'ossy@webkit.org',
+        'simon.maxime@gmail.com',  # Haiku
+        'skyul@company100.net',  # BREWMP
+        'zandobersek@gmail.com',  # GTK
+        'zecke@webkit.org',  # GTK+Qt
+        'zoltan@webkit.org',
+    ]
+}
 
 people_companies = {
     'mike@belshe.com': 'google',
     'martin.james.robinson@gmail.com': 'appcelerator',
+    'xan@webkit.org': 'igalia',
+
+    'kevino@webkit.org': 'wx',
+    'kevino@theollivers.com': 'wx',
+
+    'gustavo.noronha@collabora.co.uk': 'collabora',
+    'kov@webkit.org': 'collabora',
+
+    'ariya.hidayat@gmail.com': 'qualcomm',
+    'ariya@webkit.org': 'qualcomm',
 }
 
 print counts
 companies = {}
+unknown = {}
 for email, count in counts.iteritems():
     company = None
     user = domain = None
@@ -105,20 +140,21 @@ for email, count in counts.iteritems():
         company = 'google'
     elif email in people_companies:
         company = people_companies[email]
-    elif email in other_google:
-        company = 'google'
-    elif email in other_apple:
-        company = 'apple'
-    elif email in other_gnome:
-        company = 'gnome'
-    elif email in other_qt:
-        company = 'qt'
+    else:
+        for co, people in other.iteritems():
+            if email in people:
+                company = co
+                break
 
     if not company:
-        print 'unknown:', email
+        unknown[email] = count
         company = 'unknown'
 
     companies[company] = companies.get(company, 0) + count
+
+for email, count in sorted(unknown.iteritems(), key=operator.itemgetter(1),
+                           reverse=True):
+    print 'unknown:', email, count
 
 
 for company, count in sorted(companies.iteritems(), key=operator.itemgetter(1),
