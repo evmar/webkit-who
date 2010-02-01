@@ -11,7 +11,7 @@ changelog_re = re.compile('^    \d\d\d\d-\d\d-\d\d  .+?  <(.+?)>')
 
 counts = {}
 
-log = subprocess.Popen(['git', 'log', '--date=short', '--since=6 months ago'],
+log = subprocess.Popen(['git', 'log', '--date=short', '--since=one year ago'],
                        stdout=subprocess.PIPE)
 n = 0
 for line in log.stdout.xreadlines():
@@ -71,6 +71,7 @@ other = {
     ],
 
     'apple': [
+        'ap@webkit.org',
         'sam@webkit.org',
     ],
 
@@ -81,9 +82,15 @@ other = {
 
     'nokia': [
         'hausmann@webkit.org',
+
         'kenneth@webkit.org',
+        'kenneth.christiansen@openbossa.org',
+
         'tonikitoo@webkit.org',
+        'antonio.gomes@openbossa.org',
+
         'vestbo@webkit.org',
+
         'faw217@gmail.com',  # A guess, based on commits.
 
         'girish@forwardbias.in',  # Appears to be consulting for Qt = Nokia(?).
@@ -91,6 +98,7 @@ other = {
 
     'rim': [
         'dbates@webkit.org',
+        'dbates@intudata.com',
         'zimmermann@webkit.org',
     ],
 
@@ -101,26 +109,33 @@ other = {
         'jmalonzo@webkit.org',  # GTK
         'joanmarie.diggs@gmail.com',  # GTK Accessibility (Sun?)
         'joepeck@webkit.org',   # Inspector.
+        'joepeck02@gmail.com',   # Inspector.
         'krit@webkit.org',
         'ossy@webkit.org',
         'simon.maxime@gmail.com',  # Haiku
         'skyul@company100.net',  # BREWMP
         'zandobersek@gmail.com',  # GTK
         'zecke@webkit.org',  # GTK+Qt
+        'zecke@selfish.org',  # GTK+Qt
         'zoltan@webkit.org',
+        'hzoltan@inf.u-szeged.hu',
+        'christian@twotoasts.de',  # GTK, Midori
     ]
 }
 
 people_companies = {
     'mike@belshe.com': 'google',
     'martin.james.robinson@gmail.com': 'appcelerator',
+
     'xan@webkit.org': 'igalia',
+    'xan@gnome.org': 'igalia',
 
     'kevino@webkit.org': 'wx',
     'kevino@theollivers.com': 'wx',
 
     'gustavo.noronha@collabora.co.uk': 'collabora',
     'kov@webkit.org': 'collabora',
+    'gns@gnome.org': 'collabora',
 
     'ariya.hidayat@gmail.com': 'qualcomm',
     'ariya@webkit.org': 'qualcomm',
