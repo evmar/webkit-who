@@ -149,30 +149,34 @@ people_companies = {
     'ariya@webkit.org': 'qualcomm',
 }
 
-print counts
-companies = {}
-unknown = {}
-for email, count in counts.iteritems():
+
+def classify_email(email):
+    """Given an email, return a string identifying their company."""
     company = None
     user = domain = None
     if '@' in email:
         user, domain = email.split('@')
-    if domain and domain in domain_companies:
-        company = domain_companies[domain]
-    elif domain and domain.endswith('google.com'):
-        company = 'google'
-    elif email in people_companies:
-        company = people_companies[email]
-    else:
-        for co, people in other.iteritems():
-            if email in people:
-                company = co
-                break
+    if domain:
+        if domain in domain_companies:
+            return domain_companies[domain]
+        if domain.endswith('google.com'):
+            return 'google'
+    if email in people_companies:
+        return people_companies[email]
 
-    if not company:
-        unknown[email] = count
-        company = 'unknown'
+    for company, people in other.iteritems():
+        if email in people:
+            return company
 
+    unknown[email] = count
+    return 'unknown'
+
+
+print counts
+companies = {}
+unknown = {}
+for email, count in counts.iteritems():
+    company = classify_email(email)
     companies[company] = companies.get(company, 0) + count
 
 for email, count in sorted(unknown.iteritems(), key=operator.itemgetter(1),
