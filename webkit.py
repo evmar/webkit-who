@@ -64,17 +64,16 @@ domain_companies = {
     'appcelerator.com': 'appcelerator',
     'inf.u-szeged.hu': 'u-szeged.hu',
     'stud.u-szeged.hu': 'u-szeged.hu',
+    'ericsson.com': 'ericsson.com',
 }
 
 # Lists of particular names known to be in some companies.
 other = {
     'google': [
-        'abarth',
         'abarth@webkit.org',
         'antonm@chromium',
         'christian.plesner.hansen@gmail.com',  # v8
         'eric@webkit.org',
-        'finnur.webkit@gmail.com',
         'jens@mooseyard.com',
         'joel@jms.id.au',  # intern
         'kinuko@chromium.com',
@@ -91,30 +90,20 @@ other = {
     'redhat': [
         'danw@gnome.org',
         'otte@webkit.org',
-        'otte@gnome.org',
     ],
 
     'nokia': [
         'hausmann@webkit.org',
-
         'kenneth@webkit.org',
-        'kenneth.christiansen@openbossa.org',
-
         'tonikitoo@webkit.org',
-        'antonio.gomes@openbossa.org',
-
         'vestbo@webkit.org',
-
         'faw217@gmail.com',  # A guess, based on commits.
-
         'girish@forwardbias.in',  # Appears to be consulting for Qt = Nokia(?).
-
         'norbert.leser&nokia.com',
     ],
 
     'rim': [
         'dbates@webkit.org',
-        'dbates@intudata.com',
         'zimmermann@webkit.org',
     ],
 
@@ -124,14 +113,12 @@ other = {
         'jmalonzo@webkit.org',  # GTK
         'joanmarie.diggs@gmail.com',  # GTK Accessibility (Sun?)
         'joepeck@webkit.org',   # Inspector.
-        'joepeck02@gmail.com',   # Inspector.
         'krit@webkit.org',
         'ossy@webkit.org',
         'simon.maxime@gmail.com',  # Haiku
         'skyul@company100.net',  # BREWMP
         'zandobersek@gmail.com',  # GTK
         'zecke@webkit.org',  # GTK+Qt
-        'zecke@selfish.org',  # GTK+Qt
         'zoltan@webkit.org',
         'christian@twotoasts.de',  # GTK, Midori
     ]
@@ -139,22 +126,42 @@ other = {
 
 # One-off mapping of names to companies.
 people_companies = {
-    'mike@belshe.com': 'google',
     'martin.james.robinson@gmail.com': 'appcelerator',
-
     'xan@webkit.org': 'igalia',
-    'xan@gnome.org': 'igalia',
-
     'kevino@webkit.org': 'wx',
-    'kevino@theollivers.com': 'wx',
-
-    'gustavo.noronha@collabora.co.uk': 'collabora',
     'kov@webkit.org': 'collabora',
-    'gns@gnome.org': 'collabora',
-
-    'ariya.hidayat@gmail.com': 'qualcomm',
     'ariya@webkit.org': 'qualcomm',
 }
+
+
+email_sets = [
+    ['xan@webkit.org', 'xan@gnome.org'],
+    ['kevino@webkit.org', 'kevino@theolliviers.com'],
+    ['kov@webkit.org', 'gustavo.noronha@collabora.co.uk', 'gns@gnome.org'],
+    ['ariya@webkit.org', 'ariya.hidayat@gmail.com'],
+    ['mbelshe@chromium.org', 'mike@belshe.com'],
+    ['joepeck@webkit.org', 'joepeck02@gmail.com'],
+    ['zecke@webkit.org', 'zecke@selfish.org'],
+    ['dbates@webkit.org', 'dbates@intudata.com'],
+    ['tonikitoo@webkit.org', 'antonio.gomes@openbossa.org'],
+    ['kenneth@webkit.org', 'kenneth.christiansen@openbossa.org'],
+    ['otte@webkit.org', 'otte@gnome.org'],
+    ['abarth@webkit.org', 'abarth'],
+    ['finnur@chromium.org', 'finnur.webkit@gmail.com'],
+    ['atwilson@chromium.org', 'atwilson@atwilson-macpro.local'],
+]
+canon_map = {}
+
+def canonicalize_email(email):
+    global canon_map
+    if not canon_map:
+        for emails in email_sets:
+            for email in emails[1:]:
+                canon_map[email] = emails[0]
+
+    if email in canon_map:
+        return canon_map[email]
+    return email
 
 
 def classify_email(email):

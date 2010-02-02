@@ -5,6 +5,7 @@ import webkit
 
 counts = {}
 for date, author in webkit.parse_log():
+    author = webkit.canonicalize_email(author)
     counts[author] = counts.get(author, 0) + 1
 
 print counts
