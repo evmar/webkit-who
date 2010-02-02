@@ -158,14 +158,13 @@ people_companies = {
 
 def classify_email(email):
     """Given an email, return a string identifying their company."""
-    company = None
-    user = domain = None
+    domain = None
     if '@' in email:
-        user, domain = email.split('@')
+        _, domain = email.split('@')
     if domain:
         if domain in domain_companies:
             return domain_companies[domain]
-        if domain.endswith('google.com'):
+        if domain.endswith('.google.com'):
             return 'google'
     if email in people_companies:
         return people_companies[email]
@@ -174,7 +173,6 @@ def classify_email(email):
         if email in people:
             return company
 
-    unknown[email] = count
     return 'unknown'
 
 
@@ -188,6 +186,9 @@ unknown = {}
 for email, count in counts.iteritems():
     company = classify_email(email)
     companies[company] = companies.get(company, 0) + count
+    if company == 'unknown':
+        unknown[email] = count
+
 
 if unknown:
     print 'unclassified:'
