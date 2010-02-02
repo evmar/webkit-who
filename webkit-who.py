@@ -44,11 +44,6 @@ def parse_log(since='6 months ago'):
             author = match.group(1)
             continue
 
-counts = {}
-for date, author in parse_log():
-    counts[author] = counts.get(author, 0) + 1
-
-
 # See:  http://trac.webkit.org/wiki/WebKit%20Team
 
 domain_companies = {
@@ -172,6 +167,10 @@ def classify_email(email):
     return 'unknown'
 
 
+counts = {}
+for date, author in parse_log():
+    counts[author] = counts.get(author, 0) + 1
+
 print counts
 companies = {}
 unknown = {}
@@ -179,9 +178,11 @@ for email, count in counts.iteritems():
     company = classify_email(email)
     companies[company] = companies.get(company, 0) + count
 
-for email, count in sorted(unknown.iteritems(), key=operator.itemgetter(1),
-                           reverse=True):
-    print 'unknown:', email, count
+if unknown:
+    print 'unclassified:'
+    for email, count in sorted(unknown.iteritems(), key=operator.itemgetter(1),
+                               reverse=True):
+        print '  %s (%d)' % (email, count)
 
 
 for company, count in sorted(companies.iteritems(), key=operator.itemgetter(1),
