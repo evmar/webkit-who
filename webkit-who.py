@@ -19,6 +19,8 @@ def parse_log(since='6 months ago'):
     date_re = re.compile('^Date:\s+(\S+)')
     # Regexp for a ChangeLog header: date + author name + author email.
     changelog_re = re.compile('^    \d\d\d\d-\d\d-\d\d  .+?  <(.+?)>')
+    # Regexp for a in-ChangeLog commit message.
+    patch_re = re.compile('^    Patch by .+? <([^>]+?)> on \d\d\d\d-\d\d-\d\d')
 
     log = subprocess.Popen(['git', 'log', '--date=short', '--since=' + since],
                            stdout=subprocess.PIPE)
@@ -40,6 +42,10 @@ def parse_log(since='6 months ago'):
             date = match.group(1)
             continue
         match = changelog_re.match(line)
+        if match:
+            author = match.group(1)
+            continue
+        match = patch_re.match(line)
         if match:
             author = match.group(1)
             continue
