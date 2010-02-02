@@ -4,42 +4,50 @@ import re
 import subprocess
 import operator
 
-commit_re = re.compile('^commit ')
-author_re = re.compile('^Author: (\S+)')
-date_re = re.compile('^Date:\s+(\S+)')
-changelog_re = re.compile('^    \d\d\d\d-\d\d-\d\d  .+?  <(.+?)>')
+
+def parse_log(since='6 months ago'):
+    """Parse the commit log, yielding (date, author email) pairs.
+
+    Parser is WebKit-aware: it knows the committer frequently isn't
+    the author.
+
+    |since| is an argument for the --since flag to git log.
+    """
+
+    commit_re = re.compile('^commit ')
+    author_re = re.compile('^Author: (\S+)')
+    date_re = re.compile('^Date:\s+(\S+)')
+    # Regexp for a ChangeLog header: date + author name + author email.
+    changelog_re = re.compile('^    \d\d\d\d-\d\d-\d\d  .+?  <(.+?)>')
+
+    log = subprocess.Popen(['git', 'log', '--date=short', '--since=' + since],
+                           stdout=subprocess.PIPE)
+    n = 0
+    for line in log.stdout.xreadlines():
+        if commit_re.match(line):
+            if n > 0:
+                yield date, author
+            author = None
+            date = None
+            n += 1
+            continue
+        match = author_re.match(line)
+        if match:
+            author = match.group(1)
+            continue
+        match = date_re.match(line)
+        if match:
+            date = match.group(1)
+            continue
+        match = changelog_re.match(line)
+        if match:
+            author = match.group(1)
+            continue
 
 counts = {}
+for date, author in parse_log():
+    counts[author] = counts.get(author, 0) + 1
 
-log = subprocess.Popen(['git', 'log', '--date=short', '--since=one year ago'],
-                       stdout=subprocess.PIPE)
-n = 0
-for line in log.stdout.xreadlines():
-    if commit_re.match(line):
-        if n > 0:
-            if '@' not in author:
-                print 'XXX', author
-            counts[author] = counts.get(author, 0) + 1
-            print author, date
-            print
-        author = None
-        date = None
-        n += 1
-        continue
-    match = author_re.match(line)
-    if match:
-        author = match.group(1)
-        print author
-        continue
-    match = date_re.match(line)
-    if match:
-        date = match.group(1)
-        continue
-    match = changelog_re.match(line)
-    if match:
-        author = match.group(1)
-        print 'CL', author
-        continue
 
 # See:  http://trac.webkit.org/wiki/WebKit%20Team
 
