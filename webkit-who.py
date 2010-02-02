@@ -52,9 +52,11 @@ domain_companies = {
     'apple.com': 'apple',
     'igalia.com': 'igalia',
     'nokia.com': 'nokia',
+    'trolltech.com': 'nokia',
     'torchmobile.com.cn': 'torch mobile',
     'torchmobile.com': 'torch mobile',
     'rim.com': 'rim',
+    'appcelerator.com': 'appcelerator',
 }
 
 other = {
@@ -81,6 +83,7 @@ other = {
     'redhat': [
         'danw@gnome.org',
         'otte@webkit.org',
+        'otte@gnome.org',
     ],
 
     'nokia': [
@@ -97,6 +100,8 @@ other = {
         'faw217@gmail.com',  # A guess, based on commits.
 
         'girish@forwardbias.in',  # Appears to be consulting for Qt = Nokia(?).
+
+        'norbert.leser&nokia.com',
     ],
 
     'rim': [
