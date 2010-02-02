@@ -52,6 +52,7 @@ def parse_log(since='6 months ago'):
 
 # See:  http://trac.webkit.org/wiki/WebKit%20Team
 
+# Mapping of domain name => company name.
 domain_companies = {
     'chromium.org': 'google',
     'google.com': 'google',
@@ -63,8 +64,11 @@ domain_companies = {
     'torchmobile.com': 'torch mobile',
     'rim.com': 'rim',
     'appcelerator.com': 'appcelerator',
+    'inf.u-szeged.hu': 'u-szeged.hu',
+    'stud.u-szeged.hu': 'u-szeged.hu',
 }
 
+# Lists of particular names known to be in some companies.
 other = {
     'google': [
         'abarth',
@@ -117,7 +121,6 @@ other = {
     ],
 
     'misc (e.g. open source)': [
-        'becsi.andras@stud.u-szeged.hu',
         'bfulgham@webkit.org',  # WinCairo
         'chris.jerdonek@gmail.com',  # Seems to be doing random script cleanups?
         'jmalonzo@webkit.org',  # GTK
@@ -132,11 +135,11 @@ other = {
         'zecke@webkit.org',  # GTK+Qt
         'zecke@selfish.org',  # GTK+Qt
         'zoltan@webkit.org',
-        'hzoltan@inf.u-szeged.hu',
         'christian@twotoasts.de',  # GTK, Midori
     ]
 }
 
+# One-off mapping of names to companies.
 people_companies = {
     'mike@belshe.com': 'google',
     'martin.james.robinson@gmail.com': 'appcelerator',
