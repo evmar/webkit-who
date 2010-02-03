@@ -26,6 +26,8 @@ def parse_log(since='6 months ago'):
     for line in log.stdout.xreadlines():
         if commit_re.match(line):
             if n > 0:
+                if ' and ' in author:
+                    author = author[0:author.find(' and ')]
                 yield date, author
             author = None
             date = None
