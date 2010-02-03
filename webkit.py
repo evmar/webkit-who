@@ -107,7 +107,7 @@ other = {
         'zimmermann@webkit.org',
     ],
 
-    'misc (e.g. open source)': [
+    'misc': [
         'bfulgham@webkit.org',  # WinCairo
         'chris.jerdonek@gmail.com',  # Seems to be doing random script cleanups?
         'jmalonzo@webkit.org',  # GTK
