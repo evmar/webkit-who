@@ -1,0 +1,17 @@
+<html>
+<head>
+<script type="text/javascript"
+  src="dygraph-combined.js"></script>
+</head>
+<body>
+<div id="graphdiv" style="width: 800px; height: 600px;"></div>
+<script type="text/javascript">
+  g = new Dygraph(
+    document.getElementById("graphdiv"),
+    "data.csv",
+    { rollPeriod: 90,
+      showRoller: true }
+  );
+</script>
+</body>
+</html>
