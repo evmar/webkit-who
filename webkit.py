@@ -59,29 +59,34 @@ domain_companies = {
     'apple.com': 'apple',
     'igalia.com': 'igalia',
     'nokia.com': 'nokia',
+    # trolltech was acquired by nokia.
     'trolltech.com': 'nokia',
-    'torchmobile.com.cn': 'torch mobile',
-    'torchmobile.com': 'torch mobile',
+    # torch was acquired by RIM.
+    'torchmobile.com.cn': 'rim',
+    'torchmobile.com': 'rim',
     'rim.com': 'rim',
     'appcelerator.com': 'appcelerator',
+    # u-szeged.hu seems to a student project of working on WebKit.
     'inf.u-szeged.hu': 'u-szeged.hu',
     'stud.u-szeged.hu': 'u-szeged.hu',
-    'ericsson.com': 'ericsson.com',
+    'ericsson.com': 'ericsson',
+    # openbossa seems to be nokia; from their about page
+    # "Open Bossa is the response of Nokia Technology Institute to ..."
+    'openbossa.org': 'nokia',
+    # Seems to be contracting for Nokia on the Symbian port.
+    'digia.com': 'nokia',
+    'collabora.co.uk': 'collabora',
 }
 
 # Lists of particular names known to be in some companies.
 other = {
     'google': [
         'abarth@webkit.org',
-        'antonm@chromium',
-        'christian.plesner.hansen@gmail.com',  # v8
         'eric@webkit.org',
-        'jens@mooseyard.com',
+        'christian.plesner.hansen@gmail.com',  # v8
         'joel@jms.id.au',  # intern
-        'kinuko@chromium.com',
         'rniwa@webkit.org',  # intern
         'shinichiro.hamaji@gmail.com',
-        'yaar@chromium.src',
     ],
 
     'apple': [
@@ -111,46 +116,67 @@ other = {
 
     'misc': [
         'bfulgham@webkit.org',  # WinCairo
-        'chris.jerdonek@gmail.com',  # Seems to be doing random script cleanups?
-        'jmalonzo@webkit.org',  # GTK
+        'cjerdonek@webkit.org',  # Random script/style cleanups?
+        'jmalonzo@unpluggable.com',  # GTK
         'joanmarie.diggs@gmail.com',  # GTK Accessibility (Sun?)
-        'joepeck@webkit.org',   # Inspector.
         'krit@webkit.org',
-        'ossy@webkit.org',
         'simon.maxime@gmail.com',  # Haiku
         'skyul@company100.net',  # BREWMP
         'zandobersek@gmail.com',  # GTK
         'zecke@webkit.org',  # GTK+Qt
-        'zoltan@webkit.org',
         'christian@twotoasts.de',  # GTK, Midori
+
+        # A post by him on a mailing list had Arora in the code snippet.
+        'robert@roberthogan.net',  # Qt, Arora
+
+        'cam@mcc.id.au',  # SVG
+
+        'paroga@paroga.com',  # WinCE
+
+        # Inspector attracts all sorts of random hackers:
+        'joepeck@webkit.org',
+        'Patrick_Mueller@us.ibm.com',
+        'casey.hattori@gmail.com',
     ]
 }
 
 # One-off mapping of names to companies.
 people_companies = {
-    'martin.james.robinson@gmail.com': 'appcelerator',
+    'mrobinson@webkit.org': 'appcelerator',
     'xan@webkit.org': 'igalia',
     'kevino@webkit.org': 'wx',
-    'kov@webkit.org': 'collabora',
+    'gns@gnome.org': 'collabora',
     'ariya@webkit.org': 'qualcomm',
 }
 
 
 email_sets = [
-    ['xan@webkit.org', 'xan@gnome.org'],
+    ['xan@gnome.org', 'xan@webkit.org'],
     ['kevino@webkit.org', 'kevino@theolliviers.com'],
-    ['kov@webkit.org', 'gustavo.noronha@collabora.co.uk', 'gns@gnome.org'],
+    ['gns@gnome.org', 'gustavo.noronha@collabora.co.uk', 'kov@webkit.org'],
     ['ariya@webkit.org', 'ariya.hidayat@gmail.com'],
     ['mbelshe@chromium.org', 'mike@belshe.com'],
     ['joepeck@webkit.org', 'joepeck02@gmail.com'],
     ['zecke@webkit.org', 'zecke@selfish.org'],
     ['dbates@webkit.org', 'dbates@intudata.com'],
-    ['tonikitoo@webkit.org', 'antonio.gomes@openbossa.org'],
-    ['kenneth@webkit.org', 'kenneth.christiansen@openbossa.org'],
+    ['antonio.gomes@openbossa.org', 'tonikitoo@webkit.org'],
+    ['kenneth.christiansen@openbossa.org', 'kenneth@webkit.org'],
     ['otte@webkit.org', 'otte@gnome.org'],
     ['abarth@webkit.org', 'abarth'],
     ['finnur@chromium.org', 'finnur.webkit@gmail.com'],
     ['atwilson@chromium.org', 'atwilson@atwilson-macpro.local'],
+    ['mrobinson@webkit.org', 'martin.james.robinson@gmail.com'],
+    ['kinuko@chromium.org', 'kinuko@chromium.com'],
+    ['antonm@chromium.org', 'antonm@chromium'],
+    ['snej@chromium.org', 'jens@mooseyard.com'],
+    ['yaar@chromium.org', 'yaar@chromium.src'],
+    ['trungl@chromium.org', 'viettrungluu@gmail.com'],
+    ['oszi@inf.u-szeged.hu', 'ossy@webkit.org'],
+    ['hzoltan@inf.u-szeged.hu', 'horvath.zoltan.6@stud.u-szeged.hu',
+     'zoltan@webkit.org'],
+    ['jmalonzo@unpluggable.com', 'jmalonzo@webkit.org'],
+    ['krit@webkit.org', 'vbs85@gmx.de'],
+    ['cjerdonek@webkit.org', 'chris.jerdonek@gmail.com'],
 ]
 canon_map = {}
 

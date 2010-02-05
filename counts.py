@@ -8,7 +8,6 @@ for date, author in webkit.parse_log():
     author = webkit.canonicalize_email(author)
     counts[author] = counts.get(author, 0) + 1
 
-print counts
 companies = {}
 unknown = {}
 for email, count in counts.iteritems():
@@ -16,10 +15,13 @@ for email, count in counts.iteritems():
     companies[company] = companies.get(company, 0) + count
     if company == 'unknown':
         unknown[email] = count
+    elif company == 'misc':
+        unknown['*' + email] = count
 
 
 if unknown:
-    print 'unclassified:'
+    print ("unclassified (star denotes \"commits examined, and it's "
+           "unclear who is paying them):")
     for email, count in sorted(unknown.iteritems(), key=operator.itemgetter(1),
                                reverse=True):
         print '  %s (%d)' % (email, count)
