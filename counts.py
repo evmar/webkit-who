@@ -20,8 +20,8 @@ for email, count in counts.iteritems():
 
 
 if unknown:
-    print ("unclassified (star denotes \"commits examined, and it's "
-           "unclear who is paying them):")
+    print ("unclassified (star denotes \"commits examined, and their "
+           "backer is a minor contributor\"):")
     for email, count in sorted(unknown.iteritems(), key=operator.itemgetter(1),
                                reverse=True):
         print '  %s (%d)' % (email, count)

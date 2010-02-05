@@ -3,7 +3,7 @@
 import re
 import subprocess
 
-def parse_log(since='6 months ago'):
+def parse_log(since='2 years ago'):
     """Parse the commit log, yielding (date, author email) pairs.
 
     Parser is WebKit-aware: it knows the committer frequently isn't
@@ -73,6 +73,7 @@ domain_companies = {
     # openbossa seems to be nokia; from their about page
     # "Open Bossa is the response of Nokia Technology Institute to ..."
     'openbossa.org': 'nokia',
+    'openbossa.com': 'nokia',
     # Seems to be contracting for Nokia on the Symbian port.
     'digia.com': 'nokia',
     'collabora.co.uk': 'collabora',
@@ -87,6 +88,7 @@ other = {
         'joel@jms.id.au',  # intern
         'rniwa@webkit.org',  # intern
         'shinichiro.hamaji@gmail.com',
+        'scarybeasts@gmail.com',
     ],
 
     'apple': [
@@ -115,7 +117,7 @@ other = {
     ],
 
     'misc': [
-        'bfulgham@webkit.org',  # WinCairo
+        'bfulgham@gmail.com',  # WinCairo
         'cjerdonek@webkit.org',  # Random script/style cleanups?
         'jmalonzo@unpluggable.com',  # GTK
         'joanmarie.diggs@gmail.com',  # GTK Accessibility (Sun?)
@@ -125,6 +127,8 @@ other = {
         'zandobersek@gmail.com',  # GTK
         'zecke@webkit.org',  # GTK+Qt
         'christian@twotoasts.de',  # GTK, Midori
+
+        'alp@atoker.com',  # Did a lot of the GTK port for a company.
 
         # A post by him on a mailing list had Arora in the code snippet.
         'robert@roberthogan.net',  # Qt, Arora
@@ -143,7 +147,7 @@ other = {
 # One-off mapping of names to companies.
 people_companies = {
     'mrobinson@webkit.org': 'appcelerator',
-    'xan@webkit.org': 'igalia',
+    'xan@gnome.org': 'igalia',
     'kevino@webkit.org': 'wx',
     'gns@gnome.org': 'collabora',
     'ariya@webkit.org': 'qualcomm',
@@ -177,6 +181,13 @@ email_sets = [
     ['jmalonzo@unpluggable.com', 'jmalonzo@webkit.org'],
     ['krit@webkit.org', 'vbs85@gmx.de'],
     ['cjerdonek@webkit.org', 'chris.jerdonek@gmail.com'],
+    ['zwarich@apple.com', 'cwzwarich@uwaterloo.ca'],
+    ['alp@atoker.com', 'alp@nuanti.com', 'alp@webkit.org'],
+    ['treat@rim.com', 'treat@webkit.org'],
+    ['rniwa@webkit.org', 'ryosuke.niwa@gmail.com'],
+    ['christian@twotoasts.de', 'christian@webkit.org', 'christian@twoasts.de'],
+    ['george.staikos@torchmobile.com', 'staikos@kde.org', 'staikos@webkit.org'],
+    ['kuchhal@chromium.org', 'kuchhal@yahoo.com'],
 ]
 canon_map = {}
 
