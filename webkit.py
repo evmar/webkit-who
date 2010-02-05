@@ -220,4 +220,9 @@ def classify_email(email):
         if email in people:
             return company
 
+    if not domain:
+        # Before they started using email addresses, they just had
+        # usernames.  Assume this means Apple.
+        return 'apple'
+
     return 'unknown'
