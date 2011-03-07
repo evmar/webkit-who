@@ -66,9 +66,9 @@ domain_companies = {
     'torchmobile.com': 'rim',
     'rim.com': 'rim',
     'appcelerator.com': 'appcelerator',
-    # u-szeged.hu seems to a student project of working on WebKit.
-    'inf.u-szeged.hu': 'u-szeged.hu',
-    'stud.u-szeged.hu': 'u-szeged.hu',
+    # u-szeged.hu is a university team working on WebKit on behalf of Nokia.
+    'inf.u-szeged.hu': 'nokia',
+    'stud.u-szeged.hu': 'nokia',
     'ericsson.com': 'ericsson',
     # openbossa seems to be nokia; from their about page
     # "Open Bossa is the response of Nokia Technology Institute to ..."
@@ -77,6 +77,9 @@ domain_companies = {
     # Seems to be contracting for Nokia on the Symbian port.
     'digia.com': 'nokia',
     'collabora.co.uk': 'collabora',
+    'sencha.com': 'sencha',
+    'profusion.mobi': 'samsung', # Samsung subcontractors.
+    'samsung.com': 'samsung'
 }
 
 # Lists of particular names known to be in some companies.
@@ -94,6 +97,7 @@ other = {
     'apple': [
         'ap@webkit.org',
         'sam@webkit.org',
+        'joepeck@webkit.org'
     ],
 
     'redhat': [
@@ -106,14 +110,22 @@ other = {
         'kenneth@webkit.org',
         'tonikitoo@webkit.org',
         'vestbo@webkit.org',
-        'faw217@gmail.com',  # A guess, based on commits.
         'girish@forwardbias.in',  # Appears to be consulting for Qt = Nokia(?).
-        'norbert.leser&nokia.com',
+        'benjamin@webkit.org',
+        'kling@webkit.org',
+        'kbalazs@webkit.org',
+        'ossy@webkit.org',
+        'zherczeg@webkit.org',
+        'abecsi@webkit.org',
+        'diegohcg@webkit.org',
+        'loki@webkit.org',
+        'kim.gronholm@nomovok.com' # Nokia subcontractor
     ],
 
     'rim': [
         'dbates@webkit.org',
         'zimmermann@webkit.org',
+        'krit@webkit.org'
     ],
 
     'misc': [
@@ -121,7 +133,6 @@ other = {
         'cjerdonek@webkit.org',  # Random script/style cleanups?
         'jmalonzo@unpluggable.com',  # GTK
         'joanmarie.diggs@gmail.com',  # GTK Accessibility (Sun?)
-        'krit@webkit.org',
         'simon.maxime@gmail.com',  # Haiku
         'skyul@company100.net',  # BREWMP
         'zandobersek@gmail.com',  # GTK
@@ -149,8 +160,7 @@ people_companies = {
     'mrobinson@webkit.org': 'appcelerator',
     'xan@gnome.org': 'igalia',
     'kevino@webkit.org': 'wx',
-    'gns@gnome.org': 'collabora',
-    'ariya@webkit.org': 'qualcomm',
+    'gns@gnome.org': 'collabora'
 }
 
 
@@ -163,8 +173,8 @@ email_sets = [
     ['joepeck@webkit.org', 'joepeck02@gmail.com'],
     ['zecke@webkit.org', 'zecke@selfish.org'],
     ['dbates@webkit.org', 'dbates@intudata.com'],
-    ['antonio.gomes@openbossa.org', 'tonikitoo@webkit.org'],
-    ['kenneth.christiansen@openbossa.org', 'kenneth@webkit.org'],
+    ['tonikitoo@webkit.org', 'antonio.gomes@openbossa.org'],
+    ['kenneth@webkit.org', 'kenneth.christiansen@openbossa.org'],
     ['otte@webkit.org', 'otte@gnome.org'],
     ['abarth@webkit.org', 'abarth'],
     ['finnur@chromium.org', 'finnur.webkit@gmail.com'],
@@ -188,6 +198,10 @@ email_sets = [
     ['christian@twotoasts.de', 'christian@webkit.org', 'christian@twoasts.de'],
     ['george.staikos@torchmobile.com', 'staikos@kde.org', 'staikos@webkit.org'],
     ['kuchhal@chromium.org', 'kuchhal@yahoo.com'],
+    ['benjamin@webkit.org', 'ikipou@gmail.com'],
+    ['zherczeg@webkit.org', 'hzoltan@inf.u-szeged.hu', 'horvath.zoltan.6@stud.u-szeged.hu'],
+    ['abecsi@webkit.org', 'becsi.andras@stud.u-szeged.hu', 'abecsi@inf.u-szeged.hu'],
+    ['krit@webkit.org', 'vbs85@gmx.de']
 ]
 canon_map = {}
 for emails in email_sets:
