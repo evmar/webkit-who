@@ -190,17 +190,15 @@ email_sets = [
     ['kuchhal@chromium.org', 'kuchhal@yahoo.com'],
 ]
 canon_map = {}
+for emails in email_sets:
+    for email in emails[1:]:
+        canon_map[email] = emails[0]
 
-def canonicalize_email(email):
-    global canon_map
-    if not canon_map:
-        for emails in email_sets:
-            for email in emails[1:]:
-                canon_map[email] = emails[0]
-
-    if email in canon_map:
-        return canon_map[email]
-    return email
+def canonicalize_email(author_email):
+    """Return a generic email address for author using various email address."""
+    if author_email in canon_map:
+        return canon_map[author_email]
+    return author_email
 
 
 def classify_email(email):
